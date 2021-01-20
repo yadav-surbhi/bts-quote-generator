@@ -22,26 +22,26 @@ function complete() {
 //getQuote
 async function getQuote() {
     loading();
-    const apiURL= 'http://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json';
-    const proxyURL= "https://safe-chamber-79455.herokuapp.com/";
+    const apiURL= 'https://bts-quotes-api.herokuapp.com/quote/random';
+    //const proxyURL= "https://safe-chamber-79455.herokuapp.com/";
     try{
-        const response= await fetch( proxyURL + apiURL);
+        const response= await fetch(apiURL);
         const data= await response.json();
 
-        if(data.quoteAuthor === '') {
-            authorText.innerText= 'Unknown';
+        if(data.member === '') {
+            authorText.innerText= 'BTS';
         }
         else{
-            authorText.innerText= data.quoteAuthor;
+            authorText.innerText= data.member;
         }
 
-        if(data.quoteText.length > 120){
+        if(data.quote.length > 120){
             quoteText.classList.add('long-quote');
         }
         else{
             quoteText.classList.remove('long-quote');
         }
-        quoteText.innerText= data.quoteText;
+        quoteText.innerText= data.quote;
         complete();
     }
     catch(error){
