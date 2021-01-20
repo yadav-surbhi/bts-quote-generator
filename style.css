@@ -100,6 +100,9 @@ button:active{
 
 /* Media Query for tablets and smaller devices */
 @media screen and (max-width: 1000px){
+    body{
+        background-image: url("mobile_wallpaper.jpg");
+    }
     .quote-container{
         margin: auto 10px;
     }
